@@ -1,0 +1,22 @@
+﻿@model myinnovation.Models.Person
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("AddPerson", "Person", FormMethod.Post))
+{@Html.LabelFor(m=>m.Name)
+    @Html.TextBoxFor(m => m.Name)<br />
+
+    @Html.LabelFor(m => m.Address)
+    @Html.TextBoxFor(m => m.Address)<br />
+
+    @Html.LabelFor(m => m.Contact)
+    @Html.TextBoxFor(model => model.Contact)
+
+    <input type="submit" value="Submit" />
+}

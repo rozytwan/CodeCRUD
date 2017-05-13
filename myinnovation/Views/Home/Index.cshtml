@@ -1,0 +1,38 @@
+﻿@model IEnumerable<myinnovation.Models.TeacherSubject>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@Html.ActionLink("Create New","AddTeacher")
+<table border="1" width="200" height="200">
+    <tr>
+        <th>
+            TeacherName
+        </th>
+        <th>
+            SubjectName
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    @foreach (var item in @Model)
+    {
+        <tr>
+            <td>
+                @item.TeacherName
+            </td>
+            <td>
+                @item.Subject
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditTeacher", new { id=item.Id})||
+                @Html.ActionLink("Delete","DeleteTeacher", new { id = item.Id })
+            </td>
+            
+        </tr>
+    }
+</table>

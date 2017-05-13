@@ -1,0 +1,16 @@
+﻿@model IEnumerable<myinnovation.Models.Person>
+@using GridMvc.Html
+
+<div class="code-cut">
+    @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.Name).Titled("Person Name").Filterable(true);
+    columns.Add(c => c.Address).Titled("Person Address").Filterable(true);
+    columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Edit", "Edit", new { id = o.Id }));
+
+}).WithPaging(4).Sortable(true)
+</div>

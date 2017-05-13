@@ -1,0 +1,38 @@
+﻿@model myinnovation.Models.Person
+
+@{
+    ViewBag.Title = "Del";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Del</h2>
+
+<div>
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+    </dd>
+        <dt>
+            @Html.DisplayNameFor(model=>model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model=>model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model=>model.Contact)
+        </dd>
+        </dl>
+    @using (Html.BeginForm())
+    {<div>
+        <input type="submit" value="Delete" />
+    </div>
+
+    }
+
+</div>

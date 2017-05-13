@@ -1,0 +1,31 @@
+﻿@model myinnovation.Models.Person
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+@using (Html.BeginForm("Update","Person", new { id=Model.Id}))
+{
+    @Html.HiddenFor(model=>model.Id)
+    <div>
+        @Html.LabelFor(model => model.Name)
+        @Html.EditorFor(model=>model.Name)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Address)
+        @Html.EditorFor(model => model.Address)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Contact)
+        @Html.EditorFor(model => model.Contact)
+    </div>
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+    @Html.ActionLink("Back to list","Index")
+
+
+}
+

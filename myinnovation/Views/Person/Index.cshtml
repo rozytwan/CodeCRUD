@@ -1,0 +1,106 @@
+﻿@model IEnumerable<myinnovation.Models.Person>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+@*//Code For Simple Table*@
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("Search")
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table border="1" width="300" height="200">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Address
+        </th>
+        <th>
+            Contact
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @item.Name
+        </td>
+
+        <td>
+            @item.Address
+        </td>
+
+        <td>
+            @item.Contact
+        </td>
+    </tr>
+        }
+</table>
+
+
+@*//Code for table with model*@
+
+@Html.ActionLink("Create new", "Create")
+<table border="1" width="300" height="200">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.Name)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Address)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.Contact)
+        </td>
+        <td>
+     Action
+        </td>
+    </tr>
+    @foreach (var item in @Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.Contact)
+            </td>
+            <td>
+                @Html.ActionLink("Edit","Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete","Delete", new { id=item.Id, onclick = "return confirm('Are you sure?');" })
+            </td>
+        </tr>
+    }
+</table>
+
+@*//Code For Grid Table*@
+<div>
+    <div class="code-cut">
+        @Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(c => c.Name).Titled("Person Name").Filterable(true);
+    columns.Add(c => c.Address).Titled("Person Address").Filterable(true);
+    columns.Add()
+    .Encoded(false)
+    .Sanitized(false)
+    .SetWidth(30)
+    .RenderValueAs(o => Html.ActionLink("Edit", "Edit", new { id = o.Id }));
+
+}).WithPaging(4).Sortable(true)
+    </div>
+
+</div>
+
+ 
+
